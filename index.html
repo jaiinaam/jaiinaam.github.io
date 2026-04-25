@@ -79,10 +79,10 @@ img{display:block;max-width:100%} a{text-decoration:none;color:inherit} button{f
 .nav-cta:hover::before{transform:translateX(0)}
 .nav-ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px}
 .nav-ham span{display:block;width:26px;height:1px;background:var(--cream);
-  transition:transform .4s var(--ease),opacity .3s,width .4s;transform-origin:right}
-.nav-ham.open span:nth-child(1){transform:rotate(-45deg) translate(0,4px)}
-.nav-ham.open span:nth-child(2){opacity:0;width:14px}
-.nav-ham.open span:nth-child(3){transform:rotate(45deg) translate(0,-4px)}
+  transition:transform .4s var(--ease),opacity .3s;transform-origin:center}
+.nav-ham.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-ham.open span:nth-child(2){opacity:0}
+.nav-ham.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 #mob-menu{position:fixed;inset:0;background:var(--ink);z-index:190;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:38px;
   opacity:0;pointer-events:none;transition:opacity .5s var(--ease)}
@@ -92,8 +92,8 @@ img{display:block;max-width:100%} a{text-decoration:none;color:inherit} button{f
   transition:opacity .3s,color .3s;letter-spacing:.04em}
 .mob-link:hover{opacity:1;color:var(--gold)}
 .mob-soc{display:flex;gap:26px;margin-top:16px}
-.mob-soc a{font-family:'Jost',sans-serif;font-size:8px;letter-spacing:.5em;
-  text-transform:uppercase;color:var(--cream);opacity:.22;transition:opacity .3s,color .3s}
+.mob-soc a{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.45em;
+  text-transform:uppercase;color:var(--cream);opacity:.78;transition:opacity .3s,color .3s}
 .mob-soc a:hover{opacity:.9;color:var(--gold)}
 
 /* SCROLL ANIMATION ENGINE */
@@ -202,9 +202,9 @@ img{display:block;max-width:100%} a{text-decoration:none;color:inherit} button{f
 /* MARQUEE */
 .mq{border-top:1px solid var(--br);border-bottom:1px solid var(--br);background:var(--ink);
   padding:22px 0;overflow:hidden}
-.mq-t{display:flex;gap:70px;white-space:nowrap;animation:mqRoll 32s linear infinite}
-.mq-t span{font-family:'Jost',sans-serif;font-size:8px;letter-spacing:.6em;
-  text-transform:uppercase;color:var(--cream);opacity:.32;flex-shrink:0}
+.mq-t{display:flex;gap:70px;white-space:nowrap;animation:mqRoll 17s linear infinite}
+.mq-t span{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.55em;
+  text-transform:uppercase;color:var(--cream);opacity:.65;flex-shrink:0}
 .mq-t .gem{color:var(--gold);opacity:.33!important}
 @keyframes mqRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
@@ -238,10 +238,10 @@ img{display:block;max-width:100%} a{text-decoration:none;color:inherit} button{f
 /* TICKER */
 .ticker{background:var(--ink-3);border-top:1px solid var(--br);border-bottom:1px solid var(--br);
   height:60px;overflow:hidden;display:flex;align-items:center}
-.tick-t{display:flex;gap:64px;white-space:nowrap;animation:tickRoll 22s linear infinite}
-.tick-t span{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;
-  font-weight:300;color:var(--cream);opacity:.32;flex-shrink:0}
-.tick-t .tg{color:var(--gold);opacity:.26!important;font-style:normal;font-size:9px}
+.tick-t{display:flex;gap:64px;white-space:nowrap;animation:tickRoll 12s linear infinite}
+.tick-t span{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;
+  font-weight:300;color:var(--cream);opacity:.68;flex-shrink:0}
+.tick-t .tg{color:var(--gold);opacity:.7!important;font-style:normal;font-size:9px}
 @keyframes tickRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* JEWELLERY — 2-COL */
@@ -459,7 +459,7 @@ footer{background:var(--ink);border-top:1px solid var(--br);position:relative;ov
 .ft-main{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:72px;
   padding:96px var(--gutter) 72px;max-width:var(--maxw);margin:0 auto;
   position:relative;z-index:1}
-.ft-logo img{width:56px;height:56px;object-fit:contain;margin-bottom:18px}
+.ft-logo img{width:82px;height:82px;object-fit:contain;margin-bottom:18px}
 .ft-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;
   letter-spacing:.1em;color:var(--cream);margin-bottom:8px}
 .ft-tag{font-family:'Jost',sans-serif;font-weight:300;font-size:9px;letter-spacing:.4em;
@@ -919,8 +919,16 @@ a.ft-ci:hover{opacity:.9;color:var(--gold)}
 
 <!-- MOBILE MENU -->
 <div id="mob-menu">
-  <button class="nav-ham open" id="menuClose" style="position:absolute;top:28px;right:var(--gutter)">
-    <span></span><span></span><span></span></button>
+  <button id="menuClose" onclick="closeMob()" style="
+    position:absolute;top:24px;right:var(--gutter);
+    background:none;border:none;padding:12px;
+    width:52px;height:52px;display:flex;align-items:center;justify-content:center;
+    cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="1" y1="1" x2="21" y2="21" stroke="rgba(240,237,230,0.75)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="21" y1="1" x2="1" y2="21" stroke="rgba(240,237,230,0.75)" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </button>
   <a href="#jewellery" class="mob-link" onclick="closeMob()">Jewellery</a>
   <a href="#bespoke"   class="mob-link" onclick="closeMob()">Bespoke</a>
   <a href="#process"   class="mob-link" onclick="closeMob()">Craft</a>
@@ -1446,6 +1454,20 @@ function openMob(){hamBtn.classList.add('open');mobMenu.classList.add('open');do
 function closeMob(){hamBtn.classList.remove('open');mobMenu.classList.remove('open');document.body.style.overflow='';}
 hamBtn.addEventListener('click',openMob);
 menuClose.addEventListener('click',closeMob);
+// Swipe right to close mobile menu
+(function(){
+  var sx=0,sy=0,dragging=false;
+  mobMenu.addEventListener('touchstart',function(e){
+    sx=e.touches[0].clientX;sy=e.touches[0].clientY;dragging=true;
+  },{passive:true});
+  mobMenu.addEventListener('touchmove',function(e){
+    if(!dragging)return;
+    var dx=e.touches[0].clientX-sx;
+    var dy=Math.abs(e.touches[0].clientY-sy);
+    if(dx>65&&dy<50){closeMob();dragging=false;}
+  },{passive:true});
+  mobMenu.addEventListener('touchend',function(){dragging=false;},{passive:true});
+})();
 
 // SCROLL REVEAL ENGINE
 var obs=new IntersectionObserver(function(entries){
